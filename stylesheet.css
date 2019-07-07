@@ -32,6 +32,7 @@
     margin: 50px 100px 50px 20px;
     vertical-align: top;
     float: left;
+    overflow: scroll;
 }
 
 .options-bar {
@@ -69,4 +70,16 @@
 .forms-div input, label {
     width: 200px;
     margin: 10px;
+}
+.single-user {
+    width: 400px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    border-radius: 5pt;
+}
+.single-user h1, h2 {
+    color : #25274D;
+    font-family: "Century Gothic";
+    text-align: center;
 }

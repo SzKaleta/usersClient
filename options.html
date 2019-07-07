@@ -24,7 +24,7 @@
                 <br>
                 <input type="button" value="Show all users" onclick="getAllUsers()">
             </div>
-            <form id="form2" class="forms-div">
+            <div id="form2" class="forms-div">
                 <br>
                 <label for="oneUser">Choose user's id</label>
                 <br>
@@ -32,9 +32,9 @@
                        oninvalid="this.setCustomValidity('This field is required')"
                        oninput="this.setCustomValidity('')" />
                 <br>
-                <input type="submit" value="Show one user">
-            </form>
-            <form id="form3" class="forms-div">
+                <input type="button" value="Show one user" onclick="getUser()">
+            </div>
+            <div id="form3" class="forms-div">
                 <br>
                 <label for="name">Enter name</label>
                 <br>
@@ -46,8 +46,8 @@
                 <br>
                 <input type="number" id="age" />
                 <br>
-                <input type="submit" value="Add user">
-            </form>
+                <input type="button" value="Add user" onclick="postUser()">
+            </div>
             <form  id="form4" class="forms-div">
                 <br>
                 <label for="newName">Enter new name</label>

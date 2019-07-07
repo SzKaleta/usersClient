@@ -1,5 +1,6 @@
-let buttonList=[];
-let formsList=[];
+let buttonList = [];
+let formsList = [];
+let usersDiv = document.getElementById("usersDiv");
 
 for (let i=0; i<5; i++)
 {
@@ -68,7 +69,21 @@ for (let i=0; i<5; i++)
     buttonList[i].onclick=click;
 }
 
+function showUsers(list)
+{
+    while (usersDiv.firstChild)
+        {
+            usersDiv.removeChild(usersDiv.firstChild);
+        }
 
+    for (let i = 0; i < list.length; i++)
+        {
+            const el = document.createElement("div");
+            el.setAttribute('class', 'single-user');
+            el.innerHTML = `<h1>${list[i]['name']}</h1> <h2>Age: ${list[i]['age']}</h2>`;
+            usersDiv.appendChild(el);
+        }
+}
 
 function getAllUsers()
 {
@@ -78,13 +93,54 @@ function getAllUsers()
     xhr.addEventListener('load', function() {
         if (this.status === 200) {
             let usersList=JSON.parse(xhr.response);
-            for(let i=0; i<usersList.length;i++)
-            {
-                const el = document.createElement("p");
-                el.innerText="Name: "+usersList[i]["name"];
-                document.getElementById("usersDiv").appendChild(el);
-            }
+            showUsers(usersList);
         }
     });
     xhr.send();
+}
+
+function getUser()
+{
+    let val = document.getElementById("oneUser").value;
+    if(val)
+    {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:55279/api/Server/"+val, true);
+
+        xhr.addEventListener('load', function() {
+            if (this.status === 200) {
+                let usersList=[];
+                usersList.push(JSON.parse(xhr.response));
+                if(usersList[0]['name'])
+                {
+                    showUsers(usersList);
+                }
+            }
+        });
+        xhr.send();
+    }
+}
+
+
+function postUser()
+{
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let newUser={};
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:55279/api/Server/", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+            newUser['name']=name;
+            newUser['age']=age;
+            //newUser['user_id']=0;
+
+        xhr.addEventListener('load', function() {
+            if (this.status === XMLHttpRequest.DONE)
+            {
+                getAllUsers();
+            }
+        });
+        xhr.send(JSON.stringify(newUser));
+
 }
