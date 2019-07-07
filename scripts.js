@@ -80,7 +80,8 @@ function showUsers(list)
         {
             const el = document.createElement("div");
             el.setAttribute('class', 'single-user');
-            el.innerHTML = `<h1>${list[i]['name']}</h1> <h2>Age: ${list[i]['age']}</h2>`;
+            // language=HTML
+            el.innerHTML = `<h1>${list[i]['name']}</h1> <h2>Id: ${list[i]['user_id']} Age: ${list[i]['age']}</h2>`;
             usersDiv.appendChild(el);
         }
 }
@@ -126,21 +127,87 @@ function postUser()
 {
     let name = document.getElementById("name").value;
     let age = document.getElementById("age").value;
+
     let newUser={};
     let xhr = new XMLHttpRequest();
+    if(name!='')
+    {
     xhr.open("POST", "http://localhost:55279/api/Server/", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
-            newUser['name']=name;
-            newUser['age']=age;
-            //newUser['user_id']=0;
-
+        newUser['name']=name;
+            if(age!='')
+            {
+                newUser['age']=age;
+            }
         xhr.addEventListener('load', function() {
-            if (this.status === XMLHttpRequest.DONE)
+            if (this.status === 204)
             {
                 getAllUsers();
             }
         });
         xhr.send(JSON.stringify(newUser));
-
+    }
+    else
+    {
+        alert("You need to write a name for new user.");
+    }
 }
+
+function putUser()
+{
+    let name = document.getElementById("newName").value;
+    let age = document.getElementById("newAge").value;
+    let id = document.getElementById("newId").value;
+    let modUser={};
+    let xhr = new XMLHttpRequest();
+
+    if(id!='')
+    {
+        xhr.open("PUT", "http://localhost:55279/api/Server/"+id, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+            if(name!='')
+            {
+                modUser['name'] = name;
+            }
+            if(age!='')
+            {
+                modUser['age']=age;
+            }
+            xhr.addEventListener('load', function() {
+                if (this.status === 204)
+                {
+                    getAllUsers();
+                }
+            });
+            xhr.send(JSON.stringify(modUser));
+    }
+    else
+    {
+        alert("You need to specify the id.");
+    }
+}
+
+function deleteUser()
+{
+    let id = document.getElementById("deleteId").value;
+    let xhr = new XMLHttpRequest();
+
+    if(id!='')
+    {
+        xhr.open("DELETE", "http://localhost:55279/api/Server/"+id, true);
+        xhr.addEventListener('load', function() {
+            if (this.status === 204)
+            {
+                getAllUsers();
+            }
+        });
+        xhr.send();
+    }
+    else
+    {
+        alert("You need to specify the id.");
+    }
+}
+

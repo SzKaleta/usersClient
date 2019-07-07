@@ -12,6 +12,9 @@
     text-align: center;
  }
 
+.container {
+    width: 100%;
+}
 
 .options {
     display: inline-block;

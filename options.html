@@ -11,7 +11,7 @@
         <h1>Welcome to the Database Client</h1>
         <h2>Please choose one of the options</h2>
     </div>
-    <div>
+    <div class="container">
         <div class="options">
                 <div class="options-bar">
                     <p id="button1">All users</p>
@@ -48,7 +48,7 @@
                 <br>
                 <input type="button" value="Add user" onclick="postUser()">
             </div>
-            <form  id="form4" class="forms-div">
+            <div  id="form4" class="forms-div">
                 <br>
                 <label for="newName">Enter new name</label>
                 <br>
@@ -64,9 +64,9 @@
                        oninvalid="this.setCustomValidity('This field is required')"
                        oninput="this.setCustomValidity('')" />
                 <br>
-                <input type="submit" value="Update user">
-            </form>
-            <form id="form5" class="forms-div">
+                <input type="button" value="Update user" onclick="putUser()">
+            </div>
+            <div id="form5" class="forms-div">
                 <br>
                 <label for="deleteId">Enter id</label>
                 <br>
@@ -74,12 +74,10 @@
                        oninvalid="this.setCustomValidity('This field is required')"
                        oninput="this.setCustomValidity('')" />
                 <br>
-                <input type="submit" value="Delete user">
-            </form>
+                <input type="button" value="Delete user" onclick="deleteUser()">
+            </div>
         </div>
-        <div class="users" id="usersDiv">
-
-        </div>
+        <div class="users" id="usersDiv"></div>
     </div>
 </body>
 </html>
