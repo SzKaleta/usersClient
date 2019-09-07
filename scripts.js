@@ -1,6 +1,7 @@
 let buttonList = [];
 let formsList = [];
 let usersDiv = document.getElementById("usersDiv");
+const url = "http://localhost:8080/api/Users/"
 
 for (let i=0; i<5; i++)
 {
@@ -69,6 +70,7 @@ for (let i=0; i<5; i++)
     buttonList[i].onclick=click;
 }
 
+
 function showUsers(list)
 {
     while (usersDiv.firstChild)
@@ -89,7 +91,7 @@ function showUsers(list)
 function getAllUsers()
 {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:55279/api/Server", true);
+    xhr.open("GET", url, true);
 
     xhr.addEventListener('load', function() {
         if (this.status === 200) {
@@ -106,7 +108,7 @@ function getUser()
     if(val)
     {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:55279/api/Server/"+val, true);
+        xhr.open("GET", url+val, true);
 
         xhr.addEventListener('load', function() {
             if (this.status === 200) {
@@ -132,7 +134,7 @@ function postUser()
     let xhr = new XMLHttpRequest();
     if(name!='')
     {
-    xhr.open("POST", "http://localhost:55279/api/Server/", true);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
         newUser['name']=name;
@@ -141,7 +143,7 @@ function postUser()
                 newUser['age']=age;
             }
         xhr.addEventListener('load', function() {
-            if (this.status === 204)
+            if (this.status === 204 || this.status === 200)
             {
                 getAllUsers();
             }
@@ -164,7 +166,7 @@ function putUser()
 
     if(id!='')
     {
-        xhr.open("PUT", "http://localhost:55279/api/Server/"+id, true);
+        xhr.open("PUT", url+id, true);
         xhr.setRequestHeader("Content-Type", "application/json");
 
             if(name!='')
@@ -176,7 +178,7 @@ function putUser()
                 modUser['age']=age;
             }
             xhr.addEventListener('load', function() {
-                if (this.status === 204)
+                if (this.status === 204 || this.status === 200)
                 {
                     getAllUsers();
                 }
@@ -196,9 +198,9 @@ function deleteUser()
 
     if(id!='')
     {
-        xhr.open("DELETE", "http://localhost:55279/api/Server/"+id, true);
+        xhr.open("DELETE", url+id, true);
         xhr.addEventListener('load', function() {
-            if (this.status === 204)
+            if (this.status === 204 || this.status === 200)
             {
                 getAllUsers();
             }

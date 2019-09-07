@@ -14,16 +14,18 @@
 
 .container {
     width: 100%;
+    zoom: 1;
 }
 
 .options {
     display: inline-block;
-    background-color: aquamarine;
+    background-color: whitesmoke;
     width: 1000px;
     height: 700px;
     margin: 50px 20px 50px 175px;
     vertical-align: top;
     float: left;
+    border: 2px solid #25274D;
 }
 
 .users {
@@ -62,6 +64,26 @@
     cursor: pointer;
 }
 
+.forms-div p {
+    position: relative;
+    top: 40%;
+    left: 13%;
+    transform: translateY(-50%);
+    background-color: #29648A;
+    color: whitesmoke;
+    width: 170px;
+    height: 85px;
+    margin: 0;
+    border: 2px solid #AAABB8;
+    font-family: "Century Gothic";
+    font-weight: bold;
+    text-align: center;
+    font-size: large;
+    padding-top: 30px;
+    border-radius: 5pt;
+    cursor: pointer;
+}
+
 .forms-div {
     padding: 100px 360px;
     margin: 10px 25px;
@@ -69,6 +91,7 @@
     height: 570px;
     display: none;
     background-color: whitesmoke;
+    border: 2px solid #25274D;
 }
 .forms-div input, label {
     width: 200px;
